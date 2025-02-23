@@ -1,0 +1,49 @@
+
+apiversion: v1
+kind: configMap
+metadata: 
+     name : user
+     data:
+        "MONGO": "true"
+        "MONGO_URL": "mongodb://mongodb-dev.azdevopsb82.online:27017/users"
+        "REDIS_URL": "redis://redis-dev.azdevopsb82.online:6379"
+     
+
+
+apiversion: v1
+kind: deployment
+metadata:
+ name: user
+labels:
+     app: user
+     spec:
+      replicas: 1
+      selctoor:
+      matchlabels:
+      app: user
+     template :
+     metadata:
+     labels:
+     app: user
+     spec:
+        containers:
+        -name: user
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+        ports:
+        -containerport: 8080
+        envFrom:
+        -configMapRef:
+         name: user 
+      
+---
+apiversion: v1
+kind: service
+metadata:
+   name : user
+   spec:
+    selctor: 
+     app: user
+    ports :
+     -protocol: TCP
+     port: 8080
+    targetport: 80

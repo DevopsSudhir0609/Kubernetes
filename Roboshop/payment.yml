@@ -1,0 +1,54 @@
+apiversion: v1
+kind: configMap
+metadata: 
+     name : payment 
+     data:
+      "AMQP_HOST": "rabbitmq-dev.azdevopsb82.online"
+      "AMQP_PASS": "roboshop123"
+      "AMQP_USER": "roboshop"
+      "CART_HOST": cart
+      "CART_PORT": "8080"
+      "USER_HOST": user
+      "USER_PORT": "8080"
+
+
+
+apiversion: v1
+kind: deployment
+metadata:
+ name: payment
+labels:
+     app: payment
+     spec:
+      replicas: 1
+      selctoor:
+      matchlabels:
+      app: payment
+     template :
+     metadata:
+     labels:
+     app: payment
+     spec:
+        containers:
+        -name: payment
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+        ports:
+        -containerport: 80 
+      envFrom:
+         -configMapRef:
+          name: payment
+---
+apiversion: v1
+kind: service
+metadata:
+   name : payment
+   spec:
+    selctor: 
+     app: payment
+    ports :
+     -protocol: TCP
+     port: 8080
+    targetport: 80
+
+
+

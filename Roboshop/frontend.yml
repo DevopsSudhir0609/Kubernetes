@@ -1,0 +1,37 @@
+apiversion: v1
+kind: deployment
+metadata:
+ name: frotend
+labels:
+     app: frontend
+     spec:
+      replicas: 1
+      selctoor:
+      matchlabels:
+      app: frontend
+     template :
+     metadata:
+     labels:
+     app: frontend
+    spec:
+        containers:
+        -name: frontend
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+        ports:
+        -containerport: 80 
+      
+---
+apiversion: v1
+kind: service
+metadata:
+   name : frontend 
+   spec:
+    type: loadBalancer
+    selctor: 
+    app: frontend
+    ports :
+     -protocol: TCP
+     port: 80
+    targetport: 80
+
+
