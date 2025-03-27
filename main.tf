@@ -6,8 +6,8 @@ provider "azurerm" {
 
 module "cluster"{
   source = "./Modules"
-  component = var.component
-  subscription_id = var.subscription_id
+  component = "cluster1"
+  subscription_id = "5fc983dd-0425-421b-af56-35481b3c92d4"
 }
 
 
