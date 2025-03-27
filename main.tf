@@ -2,8 +2,7 @@
 
 provider "azurerm" {
   features {}
-  subscription_id = var.subscription_id
-}
+  }
 
 module "cluster"{
   source = "./Modules"
