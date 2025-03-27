@@ -1,4 +1,20 @@
 apiversion: v1
+kind: configMap
+metadata: 
+     name : frontend 
+     data:
+              CATALOGUE_HOST: catalogue
+              CATALOGUE_PORT: "8080"
+              USER_HOST: user
+              CART_HOST: cart
+              CART_PORT:  "8080"
+              SHIPPING_HOST: shipping
+              SHIPPING_PORT: "8080"
+              PAYMENT_HOST: payment
+              PAYMENT_PORT: "8080"
+
+
+apiversion: v1
 kind: deployment
 metadata:
  name: frotend
@@ -19,7 +35,9 @@ labels:
         image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
         ports:
         -containerport: 80 
-      
+      envFrom:
+        -configMapRef:
+         name: frontend 
 ---
 apiversion: v1
 kind: service
