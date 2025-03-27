@@ -5,14 +5,11 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
-
-
-module "clustervm" {
-  source = "./Kubernetes/Modules"
+module "cluster"{
+  source = "./Modules"
   component = var.component
-
+  subscription_id = var.subscription_id
 }
-
 
 
 terraform {
