@@ -1,0 +1,5 @@
+apiversion: v1
+name: mychart
+description: A Helm chart for Kubernetes
+version: 0.1.0
+appversion: 1.16.0

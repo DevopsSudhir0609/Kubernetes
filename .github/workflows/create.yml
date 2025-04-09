@@ -1,0 +1,32 @@
+name: deployment
+on: [push]
+jobs:
+  Dev:
+    runs-on: self-hosted
+    steps:
+      - run: echo Dev
+
+ 
+  QA:
+    runs-on: self-hosted
+    needs: Dev
+    steps:
+    - run: echo QA
+
+
+UAT:
+  runs-on: self-hosted
+  needs: QA
+  steps:
+    - run: echo UAT
+  
+Prod:
+  runs-on: self-hosted
+  needs: UAT
+  steps:
+   - name: prod
+     run: echo prod
+
+ 
+ 
+
