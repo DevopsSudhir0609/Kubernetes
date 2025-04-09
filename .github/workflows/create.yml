@@ -1,10 +1,11 @@
 name: deployment
-on: [push]
+on: [workflow_dispatch]
 jobs:
   Dev:
     runs-on: self-hosted
     steps:
       - run: echo Dev
+      
 
  
   QA:
