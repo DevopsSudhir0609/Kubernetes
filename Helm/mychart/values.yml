@@ -1,6 +1,11 @@
 name: app
 replicas: 2
  
-image : nginx:1.16.0
+image: nginx:1.16.0
 
-Port : 80 
+
+service:
+ containerPort: 8080
+ servicePort: 8080
+ type: clusterIP
+  

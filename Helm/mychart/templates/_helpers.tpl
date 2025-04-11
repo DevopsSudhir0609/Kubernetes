@@ -1,30 +1,19 @@
-{{ -define "mychart.labels" -}}
-  labels:
-    name {{.value.app.name -}}
-{{- .end -}}
 
-{{-define "mychart.image"}}
- container:
- -name: {{.values.image}}
- {{- .end -}}
+{{-define "mychart" }}
+ labels:
+    name: {{.value.name }}
+ replicas: {{.value.replicas }}
 
- {{-define "mychart.service"}}
-   service:
-   type:{{.values.service.type}}
-    port: {{.values.service.port}}
-    {{-end}}
+ image: {{ .values.image }}
+ port: {{.values.port }}
 
-  {{ -define "mychart.labels"}}
-    labels:
-    name:{{.values.name}}
-    {{-end}}
 
-{{ -define "mychart.name"}}
-   image :{{.values.image}}
-{{-end}}
+ Port: {{ .values.service.containerport }}
+ type:{{ .values.servicetype }}
 
- {{-define "mychart.service}}
-  service:
-   port: {{.value.port.service }}  
-   {{-end}}
+
+
+ 
+
+
    
