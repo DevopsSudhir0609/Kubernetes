@@ -1,15 +1,15 @@
 
-{{-define "mychart" }}
+{{- define "mychart" }}
  labels:
-    name: {{.value.name }}
- replicas: {{.value.replicas }}
+    name: {{ .values.name }}
+ replicas: {{ .values.replicas }}
 
  image: {{ .values.image }}
- port: {{.values.port }}
+ port: {{ .values.port }}
 
 
  Port: {{ .values.service.containerport }}
- type:{{ .values.servicetype }}
+ type: {{ .values.servicetype }}
 
 
 
