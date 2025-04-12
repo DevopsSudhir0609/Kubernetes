@@ -1,5 +1,5 @@
 {{- define "mychart" }}
-labels:
+
   name: {{ .Values.name }}
 replicas: {{ .Values.replicas }}
 
