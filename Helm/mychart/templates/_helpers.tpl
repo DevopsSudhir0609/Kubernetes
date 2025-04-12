@@ -1,19 +1,11 @@
-
 {{- define "mychart" }}
- labels:
-    name: {{ .values.name }}
- replicas: {{ .values.replicas }}
+labels:
+  name: {{ .Values.name }}
+replicas: {{ .Values.replicas }}
 
- image: {{ .values.image }}
- port: {{ .values.port }}
+image: {{ .Values.image }}
+port: {{ .Values.port }}
 
-
- Port: {{ .values.service.containerport }}
- type: {{ .values.servicetype }}
-
-
-
- 
-
-
-   
+containerPort: {{ .Values.service.containerport }}
+type: {{ .Values.servicetype }}
+{{- end }}
