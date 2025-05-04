@@ -72,3 +72,19 @@ ArgoCD installed successfully!
    Password: [from step 1]
 EOT
 }
+
+resource "helm_release" nginx-ingress {
+  depends_on = [null_resource.kube_config]
+
+  name       = "nginx-ingress"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+  version    = "4.0.6"
+  namespace  = "ingress-nginx"
+  create_namespace = true
+
+  set {
+    name  = "controller.service.type"
+    value = "LoadBalancer"
+  }
+}
